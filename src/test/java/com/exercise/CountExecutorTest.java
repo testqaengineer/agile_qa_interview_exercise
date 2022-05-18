@@ -36,7 +36,6 @@ class CountExecutorTest {
         );
     }
 
-    //WILL FAIL due to special character existing
     @Test
     void userAbleToSeeNumberOfVowelsAndConsonantForSingleSentenceWithSpecCharacters() {
         List<CountResult> listRes = exec.getCountOfVowelsAndConsonants(new String[]{"JerryMouse&&!! and **%%??,,TomCat"});
