@@ -83,7 +83,7 @@ class CountExecutorTest {
         );
     }
 
-    //actually cow contains 1 consonant and 2 vowels WILL FAIL
+    // actually word cow contains 1 consonant and 2 vowels WILL FAIL
     @Test
     void userAbleToSeeNumberOfVowelsAndConsonantForStringIfWorYRepresentAsVowels() {
         List<CountResult> listRes = exec.getCountOfVowelsAndConsonants(new String[]{"cow"});
