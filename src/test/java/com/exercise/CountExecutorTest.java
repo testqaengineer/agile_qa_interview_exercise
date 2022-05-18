@@ -39,7 +39,7 @@ class CountExecutorTest {
     //WILL FAIL due to special character existing
     @Test
     void userAbleToSeeNumberOfVowelsAndConsonantForSingleSentenceWithSpecCharacters() {
-        List<CountResult> listRes = exec.getCountOfVowelsAndConsonants(new String[]{"JerryMouse&&!! **%%??,,TomCat"});
+        List<CountResult> listRes = exec.getCountOfVowelsAndConsonants(new String[]{"JerryMouse&&!! and **%%??,,TomCat"});
         assertAll(
                 () -> assertThat(listRes.stream().allMatch(e -> e.getVowelCount() == 8)).isTrue(),
                 () -> assertThat(listRes.stream().allMatch(e -> e.getConsonantCount() == 11)).isTrue()
@@ -60,18 +60,18 @@ class CountExecutorTest {
     @Test
     void userAbleToSeeNumberOfVowelsAndConsonantForThreeString() {
         List<CountResult> listRes = exec.getCountOfVowelsAndConsonants(new String[]{"JerryMouse", "TomCat", "Space"});
-        Optional<Long> sumVowRes = listRes.stream().map(CountResult::getVowelCount).reduce(Long::sum);
-        Optional<Long> sumConsRes = listRes.stream().map(CountResult::getConsonantCount).reduce(Long::sum);
+        long sumVowRes = listRes.stream().map(CountResult::getVowelCount).reduce(0L, Long::sum);
+        long sumConsRes = listRes.stream().map(CountResult::getConsonantCount).reduce(0L, Long::sum);
         assertAll(
-                () -> assertThat(sumVowRes.get() == 9).isTrue(),
-                () -> assertThat(sumConsRes.get() == 12).isTrue()
+                () -> assertThat(sumVowRes).isSameAs(9L),
+                () -> assertThat(sumConsRes).isSameAs(12L)
         );
     }
 
     @Test
     void userIsNotAbleToSeeNumberOfVowelsAndConsonantFor4StringOrMore() {
-        assertThrows(RuntimeException.class, () -> exec.getCountOfVowelsAndConsonants(new String[]{"AA", "BB", "CC", "DD"}));
-        assertThrows(RuntimeException.class, () -> exec.getCountOfVowelsAndConsonants(new String[]{"A", "B", "C", "D", "E"}));
+        assertThrows(TooManyArgumentsException.class, () -> exec.getCountOfVowelsAndConsonants(new String[]{"AA", "BB", "CC", "DD"}));
+        assertThrows(TooManyArgumentsException.class, () -> exec.getCountOfVowelsAndConsonants(new String[]{"A", "B", "C", "D", "E"}));
     }
 
     @Test
@@ -93,14 +93,9 @@ class CountExecutorTest {
         );
     }
 
-    // due to null WILL FAIL as java.lang.NullPointerException
     @Test
-    void userAbleToSeeNumberOfVowelsAndConsonantForEmptyAndNullStrings() {
-        List<CountResult> listRes = exec.getCountOfVowelsAndConsonants(new String[]{"", null, ""});
-        assertAll(
-                () -> assertThat(listRes.stream().allMatch(e -> e.getVowelCount() == 0)).isTrue(),
-                () -> assertThat(listRes.stream().allMatch(e -> e.getConsonantCount() == 0)).isTrue()
-        );
+    void userAbleToSeeThatOurCountMethodNotPerceivesStringArraysWithNullArguments() {
+        assertThrows(NullPointerException.class, () -> exec.getCountOfVowelsAndConsonants(new String[]{"", null, ""}));
     }
 
 }

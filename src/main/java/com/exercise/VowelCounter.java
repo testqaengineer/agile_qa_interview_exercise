@@ -11,7 +11,7 @@ public class VowelCounter {
 
     public List<CountResult> getStringsWithNumbersOfVowelAndConsonant(String[] args) {
         if (args.length >= 4) {
-            throw new RuntimeException("Too many arguments");
+            throw new TooManyArgumentsException();
         } else {
             List<String> argumentList = Arrays.asList(args);
             return argumentList.stream()

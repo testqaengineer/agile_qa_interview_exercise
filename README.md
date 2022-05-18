@@ -49,7 +49,7 @@ What we expect - exception? or just log.info that we have more strings then 4 --
 3) IMPROVED added @Slf4j and log.info instead system.out.. (we can see in class CountExecutor)
 4) IMPROVED added builder to class CountResult and change methods of class VowelCounter
 5) IMPROVED changed logic of getStringsWithNumbersOfVowelAndConsonant(String[] args) to map and collect
-6) IMPROVED added assertJ libs and asserAll JUnit possibilities in tests to do it like softAssertations
+6) IMPROVED added assertJ libs and asserAll JUnit possibilities in tests to do it like softAssertions
 
 ### FIXED CODE Extended the program to return the number of consonants for each string array passed.
 1) Added and improved code getConsonantCount(String input) 
@@ -65,10 +65,8 @@ used without Gherkin Reference and words because testCases are very simple, and 
 3) CODE_DEFECT Anyway return null if (args.length >= 4) - it is wrong; Best way to use -- new ArrayList<>() 
    as EmptyList -->> FIXED I added throw new RuntimeException
 
-### CREATED 3 TEST CASES because Bonus points for failing test cases for the bugs you find.*/
-1) Exist for Y and W cases
-2) Exist with string which contains special characters
-3) Exist for String which null
+### CREATED 1 TEST CASE because Bonus points for failing test cases for the bugs you find.*/
+1) Exist for Y and W some cases
 
 ## Evaluation Points
 1. Use of Git.
