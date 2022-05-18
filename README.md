@@ -55,7 +55,8 @@ What we expect - exception? or just log.info that we have more strings then 4 --
 1) Added and improved code getConsonantCount(String input) 
 2) Make this and similar methods so that it return long
 
-### USED BDD/Cucumber additional layer for both vowels and consonants.
+### NOT USED BDD/Cucumber additional layer for both vowels and consonants.
+used without Gherkin Reference and words because testCases are very simple, and I didn't see the need to add a BDD layer
 
 ### REPORTED found bugs.
 1) REGEX_BUG because this regex caseSensitive -- we should change regex aeiou to aeiouAEIOU - FIXED and I added 
